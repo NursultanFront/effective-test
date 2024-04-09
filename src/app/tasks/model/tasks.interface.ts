@@ -1,7 +1,7 @@
 import { Priority, TaskStatus } from './tasks.enum';
 
 export interface Task {
-  id: string;
+  id: number;
   title: string;
   description: string;
   deadline: Date;

@@ -15,7 +15,14 @@ export class LocalStorageTasksService {
     return throwError(() => new Error('No tasks found in localStorage'));
   }
 
-  public saveEdit(editedTask: Task): Observable<Task> | Observable<never> {
+  public getTask() {
+    const tasksArray =
+      this.localStorageService.getItem<Task[]>(this.taskUrl) ?? [];
+
+    return of(tasksArray);
+  }
+
+  public editTask(editedTask: Task) {
     const tasksArray = this.localStorageService.getItem<Task[]>(this.taskUrl);
 
     if (!tasksArray) {
@@ -31,7 +38,7 @@ export class LocalStorageTasksService {
     return of(editedTask);
   }
 
-  public addNewTask(newTask: Task): Observable<Task> {
+  public addNewTask(newTask: Task) {
     const tasksArray =
       this.localStorageService.getItem<Task[]>(this.taskUrl) ?? [];
 
@@ -42,7 +49,7 @@ export class LocalStorageTasksService {
     return of(newTask);
   }
 
-  public deleteTask(deletedTaskId: string) {
+  public deleteTask(deletedTaskId: number) {
     const tasksArray = this.localStorageService.getItem<Task[]>(this.taskUrl);
 
     if (!tasksArray) {

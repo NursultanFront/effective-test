@@ -15,7 +15,10 @@ export const loadTasksFailed = createAction(
 );
 
 // Создание задачи
-export const createTask = createAction('[Task] Create Task');
+export const createTask = createAction(
+  '[Task] Create Task',
+  props<{ task: Task }>()
+);
 export const createTaskSuccess = createAction(
   '[Task] Create Task Success',
   props<{ task: Task }>()
@@ -29,12 +32,12 @@ export const createTaskFailed = createAction(
 // Редактирование задачи
 export const editTask = createAction(
   '[Task] Edit Task',
-  props<{ id: string; changes: Partial<Task> }>()
+  props<{ id: number; changes: Task }>()
 );
 
 export const editTaskSuccess = createAction(
   '[Task] Edit Task Success',
-  props<{ id: string; changes: Partial<Task> }>()
+  props<{ id: number; changes: Task }>()
 );
 export const editTaskFailed = createAction(
   '[Task] Edit Task Failed',
@@ -44,12 +47,12 @@ export const editTaskFailed = createAction(
 // Удаление задачи
 export const deleteTask = createAction(
   '[Task] Delete Task',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
 
 export const deleteTaskSuccess = createAction(
   '[Task] Delete Task Success',
-  props<{ id: string }>()
+  props<{ id: number }>()
 );
 
 export const deleteTaskFailed = createAction(

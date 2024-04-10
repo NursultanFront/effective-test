@@ -9,3 +9,5 @@ export interface Task {
   status: TaskStatus;
   assignees: string[];
 }
+
+export type TaskStatusValue = `${TaskStatus}`;

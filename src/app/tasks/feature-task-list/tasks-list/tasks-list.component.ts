@@ -3,12 +3,18 @@ import { Task } from '../../model/tasks.interface';
 import { CreateTaskButtonComponent } from '../../feature-task-create/create-task-button/create-task-button.component';
 import { TasksCardComponent } from '../tasks-card/tasks-card.component';
 import { CommonModule } from '@angular/common';
+import { FilterContainerComponent } from '../../feature-filter/filter-container/filter-container.component';
 
 @Component({
   selector: 'app-tasks-list',
   templateUrl: './tasks-list.component.html',
   styleUrls: ['./tasks-list.component.scss'],
-  imports: [CommonModule, CreateTaskButtonComponent, TasksCardComponent],
+  imports: [
+    CommonModule,
+    CreateTaskButtonComponent,
+    TasksCardComponent,
+    FilterContainerComponent,
+  ],
   standalone: true,
 })
 export class TasksListComponent {

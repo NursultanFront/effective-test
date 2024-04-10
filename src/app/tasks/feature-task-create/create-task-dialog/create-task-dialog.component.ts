@@ -37,8 +37,12 @@ import { CommonModule } from '@angular/common';
 export class CreateTaskDialogComponent {
   private dialogRef = inject(MatDialogRef<CreateTaskDialogComponent>);
 
-  public priorities = Object.values(Priority);
-  public statuses = Object.values(TaskStatus);
+  public priorities = Object.values(Priority).filter(
+    (status) => status !== Priority.All
+  );
+  public statuses = Object.values(TaskStatus).filter(
+    (status) => status !== TaskStatus.All
+  );
 
   public formGroup = new FormGroup({
     title: new FormControl('', [Validators.required, Validators.minLength(3)]),

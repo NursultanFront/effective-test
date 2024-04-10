@@ -1,10 +1,12 @@
-.create_task_form {
-  width: 400px;
-  padding: 20px;
+.create-modal {
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-.create_task_form mat-form-field {
-  width: 80%;
+
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
 }

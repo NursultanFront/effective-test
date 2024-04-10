@@ -1,0 +1,7 @@
+<ng-container *ngrxLet="tasks$ as tasks">
+  <app-tasks-list
+    [tasks]="tasks"
+    (deleteTask)="onDeleteTask($event)"
+    (openTaskPage)="openTaskPage($event)"
+  ></app-tasks-list>
+</ng-container>

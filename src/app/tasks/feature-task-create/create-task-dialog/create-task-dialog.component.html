@@ -1,0 +1,50 @@
+<form class="create_task_form" [formGroup]="formGroup" (submit)="onSubmit()">
+  <h2 mat-dialog-title>Создать задачу</h2>
+
+  <mat-form-field>
+    <mat-label>Название</mat-label>
+    <input matInput formControlName="title" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Приоритет</mat-label>
+    <mat-select formControlName="priority">
+      <mat-option *ngFor="let priority of priorities" [value]="priority">{{
+        priority
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Статус</mat-label>
+    <mat-select formControlName="status">
+      <mat-option *ngFor="let status of statuses" [value]="status">{{
+        status
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Срок сдачи</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="deadline" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Исполнители</mat-label>
+    <input matInput formControlName="assignees" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Описание</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Отмена</button>
+    <button mat-button type="submit" [disabled]="!formGroup.valid">
+      Создать
+    </button>
+  </mat-dialog-actions>
+</form>

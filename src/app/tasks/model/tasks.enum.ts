@@ -1,11 +1,11 @@
 export enum Priority {
-  Low = 'Low',
-  Medium = 'Medium',
-  High = 'High',
+  Low = 'Низкий',
+  Medium = 'Средний',
+  High = 'Высокий',
 }
 
 export enum TaskStatus {
-  Todo = 'Todo',
-  InProgress = 'InProgress',
-  Done = 'Done',
+  Todo = 'К выполнению',
+  InProgress = 'В процессе',
+  Done = 'Выполнено',
 }

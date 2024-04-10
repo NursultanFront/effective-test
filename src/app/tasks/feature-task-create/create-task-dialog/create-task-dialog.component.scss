@@ -1,0 +1,10 @@
+.create_task_form {
+  width: 400px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.create_task_form mat-form-field {
+  width: 80%;
+}

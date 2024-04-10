@@ -1,0 +1,36 @@
+.task-card {
+  margin: 0.7rem;
+
+  & .mat-mdc-card-header {
+    justify-content: space-between;
+  }
+}
+
+.priority,
+.status {
+  display: inline-block;
+  margin-right: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.2rem;
+  color: #fff;
+}
+
+.low {
+  background-color: #8bc34a;
+}
+.medium {
+  background-color: #ffc107;
+}
+.high {
+  background-color: #f44336;
+}
+
+.todo {
+  background-color: #2196f3;
+}
+.in-progress {
+  background-color: #ffc107;
+}
+.done {
+  background-color: #4caf50;
+}

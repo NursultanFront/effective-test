@@ -8,6 +8,11 @@
     </mat-form-field>
 
     <mat-form-field>
+      <mat-label>Исполнители</mat-label>
+      <input matInput formControlName="assignees" />
+    </mat-form-field>
+
+    <mat-form-field>
       <mat-label>Приоритет</mat-label>
       <mat-select formControlName="priority">
         <mat-option *ngFor="let priority of priorities" [value]="priority">{{
@@ -33,11 +38,6 @@
         [for]="picker"
       ></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Исполнители</mat-label>
-      <input matInput formControlName="assignees" />
     </mat-form-field>
 
     <mat-form-field>

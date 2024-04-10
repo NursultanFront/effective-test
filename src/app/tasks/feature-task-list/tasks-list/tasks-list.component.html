@@ -1,2 +1,8 @@
 <p>tasks-list works!</p>
 <app-create-task-button></app-create-task-button>
+<app-tasks-card
+  *ngFor="let task of tasks"
+  [task]="task"
+  (onDeleteTask)="onDeleteTask(task.id)"
+  (onOpenTask)="onOpenTask(task.id)"
+></app-tasks-card>

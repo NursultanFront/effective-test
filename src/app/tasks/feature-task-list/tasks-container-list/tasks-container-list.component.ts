@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { TasksFacade } from '../../store';
 import { Router } from '@angular/router';
 import { TasksListComponent } from '../tasks-list/tasks-list.component';
@@ -13,12 +18,17 @@ import { MatNativeDateModule } from '@angular/material/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class TasksContainerListComponent {
+export class TasksContainerListComponent implements OnInit {
   private readonly tasksFacade = inject(TasksFacade);
   public tasks$ = this.tasksFacade.tasks$;
   private router = inject(Router);
 
+  ngOnInit(): void {
+    this.tasksFacade.loadTasks();
+  }
+
   public onDeleteTask(id: number): void {
+    console.log(id);
     this.tasksFacade.deleteTask(id);
   }
 

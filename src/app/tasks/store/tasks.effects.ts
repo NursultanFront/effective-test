@@ -1,4 +1,4 @@
-import { LocalStorageTasksService } from './../service/local-storage-tasks/local-storage-tasks.service';
+import { LocalStorageTasksService } from '../service/local-storage-tasks/local-storage-tasks.service';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as tasksActions from './tasks.actions';

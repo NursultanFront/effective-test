@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { provideStore, StoreModule } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { TasksEffects, tasksFeature } from './tasks/+states';
+import { TasksEffects, tasksFeature } from './tasks/store';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 
 @NgModule({

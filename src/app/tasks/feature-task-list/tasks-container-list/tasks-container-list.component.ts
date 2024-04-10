@@ -3,12 +3,13 @@ import { TasksFacade } from '../../store';
 import { Router } from '@angular/router';
 import { TasksListComponent } from '../tasks-list/tasks-list.component';
 import { LetDirective } from '@ngrx/component';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
   selector: 'app-tasks-container-list',
   templateUrl: './tasks-container-list.component.html',
   styleUrls: ['./tasks-container-list.component.scss'],
-  imports: [TasksListComponent, LetDirective],
+  imports: [TasksListComponent, LetDirective, MatNativeDateModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })

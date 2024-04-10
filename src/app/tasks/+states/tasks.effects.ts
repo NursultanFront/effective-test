@@ -3,10 +3,9 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as tasksActions from './tasks.actions';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { Task } from '../model/tasks.interface';
 
 @Injectable()
-export class UsersEffects {
+export class TasksEffects {
   getTasks$ = createEffect(() =>
     this.actions$.pipe(
       ofType(tasksActions.loadTasks),

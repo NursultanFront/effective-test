@@ -50,10 +50,10 @@ export class CreateTaskDialogComponent {
     deadline: new FormControl('', Validators.required),
     priority: new FormControl('', Validators.required),
     status: new FormControl('', Validators.required),
-    assignees: new FormControl(
-      [],
-      [Validators.required, Validators.minLength(3)]
-    ),
+    assignees: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
   });
 
   public onSubmit() {

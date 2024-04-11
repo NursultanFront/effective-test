@@ -11,6 +11,10 @@ export class TasksFacade {
   private readonly store = inject(Store);
   public readonly tasks$ = this.store.select(TasksSelectors.selectAllTasks);
 
+  public readonly assignee$ = this.store.select(
+    TasksSelectors.selectUniqueAssignees
+  );
+
   public createTask(createdTask: Task): void {
     this.store.dispatch(tasksActions.createTask({ task: createdTask }));
   }

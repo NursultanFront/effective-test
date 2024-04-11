@@ -8,14 +8,14 @@
     </mat-select>
   </mat-form-field>
 
-  <!-- <mat-form-field>
+  <mat-form-field>
     <mat-label>Исполнители</mat-label>
     <mat-select>
-      <mat-option *ngFor="let food of foods" [value]="food.value">
-        {{ food.viewValue }}
+      <mat-option *ngFor="let assignee of assignee$ | async" [value]="assignee">
+        {{ assignee }}
       </mat-option>
     </mat-select>
-  </mat-form-field> -->
+  </mat-form-field>
 
   <mat-form-field>
     <mat-label>Дэдлайн</mat-label>

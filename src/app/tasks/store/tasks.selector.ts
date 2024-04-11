@@ -22,3 +22,9 @@ export const selectOpenedTask = createSelector(
   selectTaskEntities,
   ({ id }, entities) => entities[id] || null
 );
+
+export const selectUniqueAssignees = createSelector(selectAllTasks, (tasks) => {
+  const allAssignees = tasks.map((task) => task.assignees).flat();
+  const uniqueAssignees = [...new Set(allAssignees)];
+  return uniqueAssignees;
+});

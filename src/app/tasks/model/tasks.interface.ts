@@ -7,7 +7,7 @@ export interface Task {
   deadline: Date;
   priority: Priority;
   status: TaskStatus;
-  assignees: string[];
+  assignees: string;
 }
 
 export type TaskStatusValue = `${TaskStatus}`;

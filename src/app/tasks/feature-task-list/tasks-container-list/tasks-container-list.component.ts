@@ -18,14 +18,10 @@ import { MatNativeDateModule } from '@angular/material/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
 })
-export class TasksContainerListComponent implements OnInit {
+export class TasksContainerListComponent {
   private readonly tasksFacade = inject(TasksFacade);
   public tasks$ = this.tasksFacade.tasks$;
   private router = inject(Router);
-
-  ngOnInit(): void {
-    this.tasksFacade.loadTasks();
-  }
 
   public onDeleteTask(id: number): void {
     console.log(id);

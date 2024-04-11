@@ -1,11 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TasksContainerListComponent } from './tasks/feature-task-list/tasks-container-list/tasks-container-list.component';
+import { TaskPageComponent } from './pages/task-page/task-page.component';
 
 export const routes: Routes = [
   {
     path: 'tasks-list',
-    component: TasksContainerListComponent,
+    component: TaskPageComponent,
+    children: [
+      {
+        path: '',
+        component: TasksContainerListComponent,
+      },
+      {
+        path: 'task/:id',
+        loadComponent: () =>
+          import(
+            './tasks/feature-task-content/task-content/task-content.component'
+          ).then((c) => c.TaskContentComponent),
+      },
+    ],
   },
   {
     path: '**',

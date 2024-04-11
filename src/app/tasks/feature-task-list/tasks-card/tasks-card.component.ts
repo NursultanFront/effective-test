@@ -35,7 +35,8 @@ export class TasksCardComponent {
   @Output()
   onOpenTask = new EventEmitter<void>();
 
-  public deleteTask() {
+  public deleteTask(event: Event) {
+    event.stopPropagation();
     this.onDeleteTask.emit();
   }
 

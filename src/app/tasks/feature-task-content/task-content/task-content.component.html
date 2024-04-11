@@ -1,0 +1,22 @@
+<div *ngrxLet="task$ as task" class="task_content_wrapper">
+  <button class="redirect_to_back_button" mat-fab (click)="backToMainPage()">
+    <mat-icon> arrow_back </mat-icon>
+  </button>
+  <div class="task_content">
+    <div class="task_header">
+      <h2>Название задачи: {{ task?.title }}</h2>
+    </div>
+    <div class="task_info">
+      <h2>Приоритет: {{ task?.priority }}</h2>
+      <h2>Статус:{{ task?.status }}</h2>
+      <h2>Срок сдачи: {{ task?.deadline | date }}</h2>
+    </div>
+    <div>
+      <h2>Исполнители: {{ task?.assignees }}</h2>
+    </div>
+    <div>
+      <h2>Описание</h2>
+      <h3>{{ task?.description }}</h3>
+    </div>
+  </div>
+</div>

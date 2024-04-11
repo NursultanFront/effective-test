@@ -12,6 +12,9 @@ export class TasksFacade {
   public readonly tasks$ = this.store.select(
     TasksSelectors.selectFilteredTasks
   );
+  public readonly openedTask$ = this.store.select(
+    TasksSelectors.selectOpenedTask
+  );
 
   public readonly assignee$ = this.store.select(
     TasksSelectors.selectUniqueAssignees

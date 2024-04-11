@@ -1,6 +1,8 @@
 .task-card {
   margin: 0.7rem;
 
+  cursor: pointer;
+
   & .mat-mdc-card-header {
     justify-content: space-between;
   }

@@ -1,4 +1,4 @@
-<mat-card class="task-card">
+<mat-card class="task-card" (click)="openTask()">
   <mat-card-header>
     <mat-card-title>Название задачи: {{ task.title }}</mat-card-title>
     <mat-card-subtitle
@@ -11,7 +11,7 @@
         mat-icon-button
         class="delete_button"
         #deleteButton
-        (click)="deleteTask()"
+        (click)="deleteTask($event)"
       >
         <mat-icon>delete</mat-icon>
       </button>

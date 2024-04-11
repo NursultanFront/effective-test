@@ -2,6 +2,7 @@ import { CommonModule, NgFor } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   OnInit,
   inject,
 } from '@angular/core';
@@ -15,6 +16,8 @@ import { TaskStatus } from '../../model/tasks.enum';
 import { TasksFacade } from '../../store';
 import { TaskStatusValue } from '../../model/tasks.interface';
 import { startWith, tap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 @Component({
   selector: 'app-filter-container',
   templateUrl: './filter-container.component.html',
@@ -34,9 +37,10 @@ import { startWith, tap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterContainerComponent implements OnInit {
-  public statuses = Object.values(TaskStatus);
+  public readonly statuses = Object.values(TaskStatus);
   private readonly tasksFacade = inject(TasksFacade);
   public readonly assignee$ = this.tasksFacade.assignee$;
+  private destroyRef = inject(DestroyRef);
 
   private filterValues = {
     status: 'Все' as TaskStatusValue,
@@ -62,6 +66,7 @@ export class FilterContainerComponent implements OnInit {
   ): void {
     control.valueChanges
       .pipe(
+        takeUntilDestroyed(this.destroyRef),
         startWith(control.value),
         tap((value) => {
           this.filterValues[filterKey] = value;

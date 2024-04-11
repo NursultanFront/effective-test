@@ -32,4 +32,10 @@ export class TasksFacade {
   public filterTasks(filter: TaskFilter) {
     this.store.dispatch(tasksActions.filterTasks({ filter }));
   }
+
+  public editTask(editedTask: Task) {
+    this.store.dispatch(
+      tasksActions.editTask({ changes: editedTask, id: editedTask.id })
+    );
+  }
 }

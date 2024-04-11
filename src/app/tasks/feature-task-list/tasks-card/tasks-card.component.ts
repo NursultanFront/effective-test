@@ -10,12 +10,19 @@ import { MatCardModule } from '@angular/material/card';
 import { Task } from '../../model/tasks.interface';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
+import { TaskEditButtonComponent } from '../../feature-task-edit/task-edit-button/task-edit-button.component';
 
 @Component({
   selector: 'app-tasks-card',
   templateUrl: './tasks-card.component.html',
   styleUrls: ['./tasks-card.component.scss'],
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatIconModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    TaskEditButtonComponent,
+  ],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

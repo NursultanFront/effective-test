@@ -30,8 +30,6 @@ export class TasksFacade {
   }
 
   public filterTasks(filter: TaskFilter) {
-    console.log(filter);
-
     this.store.dispatch(tasksActions.filterTasks({ filter }));
   }
 }

@@ -11,3 +11,9 @@ export interface Task {
 }
 
 export type TaskStatusValue = `${TaskStatus}`;
+
+export type TaskFilter = {
+  status: TaskStatusValue;
+  assignee: string;
+  date: Date | null;
+};

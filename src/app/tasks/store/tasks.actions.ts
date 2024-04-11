@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Task } from '../model/tasks.interface';
+import { Task, TaskFilter, TaskStatusValue } from '../model/tasks.interface';
 
 // Загрузка списка задач
 export const loadTasks = createAction('[Task] Load Tasks');
@@ -58,4 +58,11 @@ export const deleteTaskSuccess = createAction(
 export const deleteTaskFailed = createAction(
   '[Task] Delete Task Failed',
   props<{ error: string }>()
+);
+
+// Фильтрация задачи
+
+export const filterTasks = createAction(
+  '[Task] FilterTasks',
+  props<{ filter: TaskFilter }>()
 );

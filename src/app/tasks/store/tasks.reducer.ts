@@ -1,15 +1,23 @@
 import { EntityState } from '@ngrx/entity';
 import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { createFeature, createReducer, on } from '@ngrx/store';
-import { Task } from '../model/tasks.interface';
+import { Task, TaskFilter } from '../model/tasks.interface';
 import * as tasksActions from './tasks.actions';
 
 export const tasksFeatureKey = 'tasks';
-export interface State extends EntityState<Task> {}
+export interface State extends EntityState<Task> {
+  filter: TaskFilter;
+}
 
-export const adapter: EntityAdapter<Task> = createEntityAdapter<Task>();
+export const adapter: EntityAdapter<Task> = createEntityAdapter<Task>({});
 
-export const initialState: State = adapter.getInitialState({});
+export const initialState: State = adapter.getInitialState({
+  filter: {
+    assignee: '',
+    date: null,
+    status: 'Все',
+  },
+});
 
 export const reducer = createReducer(
   initialState,
@@ -46,6 +54,10 @@ export const reducer = createReducer(
   on(tasksActions.deleteTaskFailed, (state, { error }) => ({
     ...state,
     error,
+  })),
+  on(tasksActions.filterTasks, (state, { filter }) => ({
+    ...state,
+    filter,
   }))
 );
 export const tasksFeature = createFeature({

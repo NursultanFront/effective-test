@@ -2,14 +2,16 @@ import { inject, Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as TasksSelectors from './tasks.selector';
 import * as tasksActions from './tasks.actions';
-import { Task } from '../model/tasks.interface';
+import { Task, TaskFilter } from '../model/tasks.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TasksFacade {
   private readonly store = inject(Store);
-  public readonly tasks$ = this.store.select(TasksSelectors.selectAllTasks);
+  public readonly tasks$ = this.store.select(
+    TasksSelectors.selectFilteredTasks
+  );
 
   public readonly assignee$ = this.store.select(
     TasksSelectors.selectUniqueAssignees
@@ -25,5 +27,11 @@ export class TasksFacade {
 
   public loadTasks() {
     this.store.dispatch(tasksActions.loadTasks());
+  }
+
+  public filterTasks(filter: TaskFilter) {
+    console.log(filter);
+
+    this.store.dispatch(tasksActions.filterTasks({ filter }));
   }
 }

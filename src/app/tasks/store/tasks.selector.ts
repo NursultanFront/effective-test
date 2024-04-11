@@ -28,3 +28,28 @@ export const selectUniqueAssignees = createSelector(selectAllTasks, (tasks) => {
   const uniqueAssignees = [...new Set(allAssignees)];
   return uniqueAssignees;
 });
+
+// Селектор для доступа к фильтрам
+export const selectTaskFilters = createSelector(
+  selectTasksState,
+  (state) => state.filter
+);
+
+// Селектор для отфильтрованных задач
+export const selectFilteredTasks = createSelector(
+  selectAllTasks,
+  selectTaskFilters,
+  (tasks, filters) => {
+    return tasks.filter((task) => {
+      const statusMatch =
+        filters.status === 'Все' || task.status === filters.status;
+      const assigneeMatch =
+        !filters.assignee || task.assignees.includes(filters.assignee);
+      const dateMatch =
+        !filters.date ||
+        new Date(task.deadline).toDateString() === filters.date.toDateString();
+
+      return statusMatch && assigneeMatch && dateMatch;
+    });
+  }
+);

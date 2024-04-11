@@ -14,7 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { TaskStatus } from '../../model/tasks.enum';
 import { TasksFacade } from '../../store';
-import { TaskStatusValue } from '../../model/tasks.interface';
+import { TaskFilter, TaskStatusValue } from '../../model/tasks.interface';
 import { startWith, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -42,10 +42,10 @@ export class FilterContainerComponent implements OnInit {
   public readonly assignee$ = this.tasksFacade.assignee$;
   private destroyRef = inject(DestroyRef);
 
-  private filterValues = {
-    status: 'Все' as TaskStatusValue,
+  private filterValues: TaskFilter = {
+    status: 'Все',
     assignee: '',
-    date: null as Date | null,
+    date: null,
   };
 
   public statusControl = new FormControl<TaskStatusValue>(

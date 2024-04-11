@@ -1,5 +1,7 @@
-<app-filter-container></app-filter-container>
-<app-create-task-button></app-create-task-button>
+<div class="task-filter-wraper">
+  <app-filter-container></app-filter-container>
+  <app-create-task-button></app-create-task-button>
+</div>
 <app-tasks-card
   *ngFor="let task of tasks"
   [task]="task"

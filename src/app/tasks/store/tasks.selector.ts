@@ -29,13 +29,10 @@ export const selectUniqueAssignees = createSelector(selectAllTasks, (tasks) => {
   return uniqueAssignees;
 });
 
-// Селектор для доступа к фильтрам
 export const selectTaskFilters = createSelector(
   selectTasksState,
   (state) => state.filter
 );
-
-// Селектор для отфильтрованных задач
 export const selectFilteredTasks = createSelector(
   selectAllTasks,
   selectTaskFilters,

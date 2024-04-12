@@ -1,5 +1,13 @@
 # Тестовое задание для компаний Effective Mobile
 
-## Development server
+## Задание - создать таск треккер
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+https://docs.google.com/document/d/1nHDc6OACWNSN1nVnZmziFrQJaE-y6B09pPTIv4OxUDE/edit
+
+## Стэк
+- Angular 16
+- Angular Material
+- SCSS
+- TypeScript
+- RxJs
+- NgRx

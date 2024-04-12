@@ -25,7 +25,7 @@ export class TaskContentComponent {
   public readonly task$ = this.tasksFacade.openedTask$;
   private readonly router = inject(Router);
 
-  backToMainPage() {
+  public backToMainPage() {
     this.router.navigate(['/']);
   }
 }

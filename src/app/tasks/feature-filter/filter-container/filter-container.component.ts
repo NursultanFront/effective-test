@@ -15,7 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TaskStatus } from '../../model/tasks.enum';
 import { TasksFacade } from '../../store';
 import { TaskFilter, TaskStatusValue } from '../../model/tasks.interface';
-import { startWith, tap } from 'rxjs';
+import { combineLatest, startWith, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -55,21 +55,23 @@ export class FilterContainerComponent implements OnInit {
   public deadlineControl = new FormControl<Date | null>(this.filterValues.date);
 
   ngOnInit(): void {
-    this.initValueChanges(this.statusControl, 'status');
-    this.initValueChanges(this.assigneeControl, 'assignee');
-    this.initValueChanges(this.deadlineControl, 'date');
-  }
-
-  private initValueChanges(
-    control: FormControl,
-    filterKey: keyof typeof this.filterValues
-  ): void {
-    control.valueChanges
+    combineLatest([
+      this.statusControl.valueChanges.pipe(startWith(this.statusControl.value)),
+      this.assigneeControl.valueChanges.pipe(
+        startWith(this.assigneeControl.value)
+      ),
+      this.deadlineControl.valueChanges.pipe(
+        startWith(this.deadlineControl.value)
+      ),
+    ])
       .pipe(
         takeUntilDestroyed(this.destroyRef),
-        startWith(control.value),
-        tap((value) => {
-          this.filterValues[filterKey] = value;
+        tap(([status, assignee, deadline]) => {
+          this.filterValues = {
+            status: status ?? 'Все',
+            assignee: assignee ?? '',
+            date: deadline,
+          };
           this.tasksFacade.filterTasks({ ...this.filterValues });
         })
       )

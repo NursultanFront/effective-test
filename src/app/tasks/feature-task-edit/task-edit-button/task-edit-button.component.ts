@@ -24,7 +24,7 @@ export class TaskEditButtonComponent {
   private readonly taskFascade = inject(TasksFacade);
   private destroyRef = inject(DestroyRef);
 
-  openDialog(event: Event) {
+  public openDialog(event: Event) {
     event.stopPropagation();
 
     const dialogRef = this.dialog.open(TaskEditDialogComponent, {

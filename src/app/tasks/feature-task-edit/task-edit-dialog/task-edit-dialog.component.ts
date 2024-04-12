@@ -50,14 +50,6 @@ export class TaskEditDialogComponent {
     (status) => status !== TaskStatus.All
   );
 
-  public formGroup = new FormBuilder().group({
-    assignees: new FormControl('', [
-      Validators.required,
-      Validators.minLength(1),
-    ]),
-    status: new FormControl('', [Validators.required, Validators.minLength(3)]),
-  });
-
   constructor() {
     if (this.data) {
       console.log(this.data);
@@ -68,6 +60,14 @@ export class TaskEditDialogComponent {
       });
     }
   }
+
+  public formGroup = new FormBuilder().group({
+    assignees: new FormControl('', [
+      Validators.required,
+      Validators.minLength(1),
+    ]),
+    status: new FormControl('', [Validators.required, Validators.minLength(3)]),
+  });
 
   public onSubmit() {
     this.dialogRef.close(this.formGroup.value);

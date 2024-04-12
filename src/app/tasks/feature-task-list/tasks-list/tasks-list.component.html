@@ -2,9 +2,16 @@
   <app-filter-container></app-filter-container>
   <app-create-task-button></app-create-task-button>
 </div>
-<app-tasks-card
-  *ngFor="let task of tasks"
-  [task]="task"
-  (onDeleteTask)="onDeleteTask(task.id)"
-  (onOpenTask)="onOpenTask(task.id)"
-></app-tasks-card>
+
+<ng-container *ngIf="tasks.length > 0; else noTasksTemplate">
+  <app-tasks-card
+    *ngFor="let task of tasks"
+    [task]="task"
+    (onDeleteTask)="onDeleteTask(task.id)"
+    (onOpenTask)="onOpenTask(task.id)"
+  ></app-tasks-card>
+</ng-container>
+
+<ng-template #noTasksTemplate>
+  <p>Список задач пуст.</p>
+</ng-template>

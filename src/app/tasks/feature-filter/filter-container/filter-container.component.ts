@@ -15,7 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TaskStatus } from '../../model/tasks.enum';
 import { TasksFacade } from '../../store';
 import { TaskFilter, TaskStatusValue } from '../../model/tasks.interface';
-import { combineLatest, startWith, tap } from 'rxjs';
+import { combineLatest, distinctUntilChanged, startWith, tap } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -42,53 +42,50 @@ export class FilterContainerComponent implements OnInit {
   public readonly assignee$ = this.tasksFacade.assignee$;
   private destroyRef = inject(DestroyRef);
 
-  private filterValues: TaskFilter = {
+  private readonly filterValues: TaskFilter = {
     status: 'Все',
     assignee: '',
     date: null,
   };
 
-  public statusControl = new FormControl<TaskStatusValue>(
-    this.filterValues.status
-  );
-  public assigneeControl = new FormControl<string>(this.filterValues.assignee);
-  public deadlineControl = new FormControl<Date | null>(this.filterValues.date);
+  public statusControl = new FormControl<TaskStatusValue>('Все');
+  public assigneeControl = new FormControl<string>('');
+  public deadlineControl = new FormControl<Date | null>(null);
 
   ngOnInit(): void {
     combineLatest([
-      this.statusControl.valueChanges.pipe(startWith(this.statusControl.value)),
+      this.statusControl.valueChanges.pipe(
+        startWith(this.statusControl.value),
+        distinctUntilChanged()
+      ),
       this.assigneeControl.valueChanges.pipe(
-        startWith(this.assigneeControl.value)
+        startWith(this.assigneeControl.value),
+        distinctUntilChanged()
       ),
       this.deadlineControl.valueChanges.pipe(
-        startWith(this.deadlineControl.value)
+        startWith(this.deadlineControl.value),
+        distinctUntilChanged()
       ),
     ])
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         tap(([status, assignee, deadline]) => {
-          this.filterValues = {
+          const filter = {
             status: status ?? 'Все',
             assignee: assignee ?? '',
             date: deadline,
           };
-          this.tasksFacade.filterTasks({ ...this.filterValues });
+          this.tasksFacade.filterTasks({ ...filter });
         })
       )
       .subscribe();
   }
 
   public resetFilters(): void {
-    this.filterValues = {
-      status: 'Все',
-      assignee: '',
-      date: null,
-    };
-
     this.statusControl.setValue(this.filterValues.status);
     this.assigneeControl.setValue(this.filterValues.assignee);
     this.deadlineControl.setValue(this.filterValues.date);
 
-    this.tasksFacade.filterTasks({ ...this.filterValues });
+    this.tasksFacade.filterTasks(this.filterValues);
   }
 }
